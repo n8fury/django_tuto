@@ -1,5 +1,5 @@
 """
-URL configuration for test_project project.
+URL configuration for auction project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -16,10 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import hello_world, home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),  # home page
-    path('/hello', hello_world),  # hello page
 ]
