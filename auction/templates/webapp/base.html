@@ -15,9 +15,11 @@
   </head>
   <body>
     <!-- Navbar -->
+    {% include 'webapp/navbar.html' %}
 
     <div class="container">
       <br />
+
       <!--notification messages-->
 
       {% block content %} {% endblock %}
@@ -38,5 +40,17 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+    <!--noSource-->
+    <script>
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
+      document.onkeydown = function (e) {
+        if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 73)) {
+          e.preventDefault();
+        }
+      };
+    </script>
   </body>
 </html>
