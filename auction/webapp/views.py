@@ -1,6 +1,47 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import CreateUserForm, LoginForm
 
 
-def hello(request, *args, **kwargs):
+# Home
+def hello(request):
+    """
+    Renders the 'index.html' template for the webapp.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        HttpResponse object rendering the 'index.html' page.
+    """
     return render(request, 'webapp/index.html', {})
-# Create your views here.
+
+
+# Register a user
+def register(request):
+    """
+    Handles user registration by displaying and processing the
+    registration form.
+
+    If the request method is POST and the form is valid, the
+    new user is created. Otherwise, it displays the empty
+    or invalid form.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        HttpResponse object rendering the 'register.html' page
+        with the registration form.
+    """
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # return redirect('')
+
+    context = {'form': form}
+    return render(request, 'webapp/register.html', context=context)
+
+
+# Login
