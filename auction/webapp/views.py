@@ -17,7 +17,7 @@ def hello(request):
 
 
 # Register a user
-def register(request):
+def user_register(request):
     """
     Handles user registration by displaying and processing the
     registration form.
@@ -38,14 +38,14 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            # return redirect('')
+            return redirect('login ')
 
     context = {'form': form}
     return render(request, 'webapp/register.html', context=context)
 
 
 # Login
-def login(request):
+def user_login(request):
     form = LoginForm()
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
@@ -60,3 +60,11 @@ def login(request):
 
     context = {'form': form}
     return render(request, 'webapp/login.html', context=context)
+
+# logout
+
+
+def user_login(request):
+    auth.logout(request)
+
+    return redirect("logout")
