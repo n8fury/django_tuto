@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from .forms import CreateUserForm, LoginForm
+from django.contrib.auth.models import auth
+from django.contrib.auth import authenticate
+from django.contrib import messages
 
 
 # Home
 def hello(request):
     """
-    Renders the 'index.html' template for the webapp.
+ Renders the 'index.html' template for the webapp.
 
     Args:
         request: The HTTP request object.
@@ -38,7 +41,8 @@ def user_register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login ')
+            messages.success(request, "Account created successfully!")
+            return redirect('login')
 
     context = {'form': form}
     return render(request, 'webapp/register.html', context=context)
@@ -64,7 +68,7 @@ def user_login(request):
 # logout
 
 
-def user_login(request):
+def user_logout(request):
     auth.logout(request)
 
-    return redirect("logout")
+    return redirect("login")
