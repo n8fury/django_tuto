@@ -1,3 +1,10 @@
 {% extends 'webapp/base.html'%} {% block content %}
-<h1>Welcome to the dashboard page! {{user}}</h1>
-{% endblock %}
+<h5>Welcome to the dashboard page! {{user}}</h5>
+<hr />
+
+<a href="{%url 'dashboard'%}" class="btn btn-primary btn-sm">
+  <i class="fa-solid fa-plus"></i> New post</a
+>
+<hr />
+{% for post in my_posts %} {{ post.title}} {{post.creator}} {%endfor%}
+{%endblock %}

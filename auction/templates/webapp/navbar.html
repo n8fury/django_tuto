@@ -20,15 +20,15 @@
       <div class="d-flex flex-grow-1 align-items-center">
         <ul class="navbar-nav ml-auto">
           &nbsp; &nbsp; &nbsp; {% if user.is_authenticated %}
-           <li class="nav-item"></li>
-            <a class="nav-link" href="{% url 'dashboard' %}"
-              >Dashboard &nbsp; <i class="fa fa-home" aria-hidden="true"></i
-            ></a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+              Dashboard &nbsp; <i class="fas fa-home"></i>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}"
-              >Sign out &nbsp; <i class="fa fa-sign-out" aria-hidden="true"></i
-            ></a>
+            <a class="nav-link" href="{% url 'logout' %}">
+              Sign out &nbsp; <i class="fas fa-sign-out-alt"></i>
+            </a>
           </li>
           {% endif %}
         </ul>
@@ -37,11 +37,15 @@
       <ul class="navbar-nav ml-auto">
         {% if not user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Register</a>
+          <a class="nav-link" href="{% url 'register' %}">
+            Register &nbsp; <i class="fas fa-user-plus"></i>
+          </a>
         </li>
         &nbsp; &nbsp; &nbsp;
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          <a class="nav-link" href="{% url 'login' %}">
+            Login &nbsp; <i class="fas fa-sign-in-alt"></i>
+          </a>
         </li>
         {% endif %}
       </ul>
