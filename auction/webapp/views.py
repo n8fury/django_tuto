@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
 from django.shortcuts import redirect, render
+from .models import AuctionPost
 
 from .forms import CreateUserForm, LoginForm
 
@@ -98,7 +99,10 @@ def user_dashboard(request):
     Returns:
         HttpResponse object rendering the 'dashboard.html' page.
     """
-    return render(request, 'webapp/dashboard.html')
+
+    my_posts = AuctionPost.objects.all()
+    context = {'my_posts': my_posts}
+    return render(request, 'webapp/dashboard.html', context=context)
 
 
 def user_logout(request):

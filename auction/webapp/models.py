@@ -20,17 +20,17 @@ class AuctionPost(models.Model):
     is_active = models.BooleanField(default=True)
     image = models.ImageField(
         upload_to='auction_images/', blank=True, null=True)
-
-
-def clean(self):
-    if self.current_bid < self.min_bid_amount:
-        raise ValidationError(
-            {'current_bid': 'Current bid must be greater than or equal to the minimum bid amount.'})
-
-    # Compare end_time with the current time
-    if self.end_time <= timezone.now():
-        raise ValidationError(
-            {'end_time': 'End time must be in the future.'})
+    is_public = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.title} by {self.creator.username}"
+
+    def clean(self):
+        if self.current_bid < self.min_bid_amount:
+            raise ValidationError(
+                {'current_bid': 'Current bid must be greater than or equal to the minimum bid amount.'})
+
+        # Compare end_time with the current time
+        if self.end_time <= timezone.now():
+            raise ValidationError(
+                {'end_time': 'End time must be in the future.'})
